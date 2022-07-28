@@ -13,6 +13,8 @@ should end up with an `output.csv` and a `report.txt`
 
 ## how to run test
 
+`bundle install`
+
 `rspec`
 
 
