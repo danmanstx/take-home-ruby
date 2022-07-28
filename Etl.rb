@@ -9,7 +9,6 @@ class Etl
     csv = import_csv
     error_rows = process_output(csv)
     generate_report(error_rows)
-    puts error_rows.inspect
   end
 
   def self.generate_report(errors)
@@ -46,6 +45,7 @@ class Etl
 
   def self.transform_row(row)
     transform_all_date_fields(row)
+    row[:phone_number] = transform_phone(row[:phone_number])
     row
   end
 
@@ -55,7 +55,7 @@ class Etl
 
   def self.check_if_missing_required(row)
     REQUIRED_HEADERS.each do |header|
-      return true if row.fetch(header) == nil
+      return true if row[header] == nil
     end
     false
   end
@@ -64,6 +64,7 @@ class Etl
     row[:dob] = transform_date(row[:dob])  if row[:dob] != nil
     row[:effective_date] = transform_date(row[:effective_date])  if row[:effective_date] != nil
     row[:expiry_date] = transform_date(row[:expiry_date])  if row[:expiry_date] != nil
+    row
   end
 
   def self.transform_date(date)
