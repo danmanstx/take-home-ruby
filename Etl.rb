@@ -46,11 +46,12 @@ class Etl
   def self.transform_row(row)
     transform_all_date_fields(row)
     row[:phone_number] = transform_phone(row[:phone_number])
+    row[:member_id] = row[:member_id].to_s.gsub(/\s/, '')
     row
   end
 
   def self.check_phone(phone)
-    phone =~ /\+1\d{10}/ ? false : true
+    phone =~ /^\+1\d{10}$/ ? false : true
   end
 
   def self.check_if_missing_required(row)

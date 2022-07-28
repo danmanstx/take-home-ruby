@@ -1,5 +1,5 @@
 # take-home-ruby
-Take home ruby challenge, slightly unsure on wording to handle bad phones numbers. Currently, they are reported in error report and excluded if nil or number to format (ie. 11 digits already).
+Take home ruby challenge, slightly unsure on wording to handle bad phones numbers. Currently, they are reported in error report and excluded if nil or number cant be formatted (ie. 11 digits already).
 
 
 ## how to run

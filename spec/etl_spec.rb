@@ -1,6 +1,5 @@
 require_relative '../Etl'
 
-
 describe Etl do
   describe '.import_csv' do
     context 'when import_csv is called' do
@@ -26,21 +25,29 @@ describe Etl do
       let(:import) {Etl.import_csv}
       let(:output) {Etl.process_output(import)}
 
-      it 'prcoessed' do
+      it 'processed' do
         expect(output).to be_kind_of(Array)
+      end
+    end
+  end
+
+  describe '.generate_report' do
+    context 'when called' do
+      let(:errors) { [{test: 'data'}, {test2: 'data2'}, {test3: 'data3'}] }
+
+      it 'processed' do
+        allow(Etl).to receive(:generate_report).and_return("Report")
+
+        expect(Etl.generate_report(errors)).to eq('Report')
       end
     end
   end
 
   describe '.failed_check' do
     context 'when called' do
-      let(:good_row) { {first_name:"Jason", last_name:"Bateman", dob:"12/12/2000", expiry_date: '01-23-23', member_id:"AB 0000", effective_date: "11/02/99"} }
+      let(:good_row) { {first_name:"Jason", last_name:"Bateman", dob:"12/12/2000", expiry_date: '01-23-23', member_id:"AB 0000", effective_date: "11/02/99",  phone_number: '555-555-5555'} }
       let(:bad_phone_row) { {first_name:"Jason", last_name:"Bateman", dob:"12/12/2000", expiry_date: '01-23-23', member_id:"AB 0000", effective_date: "11/02/99", phone_number: '123123'} }
       let(:missing_required_row) { {first_name:"Jason", dob:"12/12/2000", expiry_date: '01-23-23', member_id:"AB 0000", effective_date: "11/02/99"} }
-
-      it 'when good data, false' do
-        expect(Etl.failed_check(good_row)).to eq(false)
-      end
 
       it 'when bad phone, true' do
         expect(Etl.failed_check(bad_phone_row)).to eq(true)
