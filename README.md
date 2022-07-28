@@ -1,7 +1,4 @@
 # take-home-ruby
-<<<<<<< Updated upstream
-Take home ruby challenge
-=======
 Take home ruby challenge, slightly unsure on wording to handle bad phones numbers. Currently, they are reported in error report and excluded if nil or number to format (ie. 11 digits already).
 
 
@@ -23,5 +20,3 @@ should end up with an `output.csv` and a `report.txt`
 
 - Phone Numbers must be E.164 compliant (country code + 10 numeric digits)
 - first_name, last_name, dob, member_id, effective_date are ALL required for each patient
-
-
